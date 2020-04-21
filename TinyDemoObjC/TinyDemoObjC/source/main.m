@@ -16,20 +16,18 @@
  */
 void setup(  )
 {
-    NSWindow *myWindow;      // typed pointer to NSWindow object
-    NSView   *myView;        // typed pointer to NSView object
-    NSRect    graphicsRect;  // contains an origin, width, height
+    NSWindow* myWindow;      // typed pointer to NSWindow object
+    NSView* myView;        // typed pointer to NSView object
 
     // initialize the rectangle variable
+    NSRect graphicsRect;  // contains an origin, width, height
     graphicsRect = NSMakeRect(100.0, 350.0, 400.0, 400.0);
 
     myWindow = [ [NSWindow alloc]              // create the window
                initWithContentRect: graphicsRect
-                         styleMask:NSTitledWindowMask
-                                  |NSClosableWindowMask
-                                  |NSMiniaturizableWindowMask
-                           backing:NSBackingStoreBuffered
-                             defer:NO ];
+                         styleMask: NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
+                           backing: NSBackingStoreBuffered
+                             defer: NO ];
 
     [myWindow setTitle:@"Tiny Application Window"];
 
@@ -38,8 +36,8 @@ void setup(  )
 
     [myWindow setContentView:myView ];    // set window's view
 
-    [myWindow setDelegate:myView ];       // set window's delegate
-    [myWindow makeKeyAndOrderFront: nil]; // display window
+    [myWindow setDelegate:(id)myView ];   // set window's delegate (delegates control of the user interface)
+    [myWindow makeKeyAndOrderFront: nil]; // move window to the top (i.e. display window)
 }
 
 int main(  )
